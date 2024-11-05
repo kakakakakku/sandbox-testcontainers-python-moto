@@ -1,0 +1,27 @@
+name: Run pytest
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+env:
+  AWS_PROFILE: moto
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v3
+      - name: Setup Python
+        run: uv python install
+      - name: Install dependencies
+        run: uv sync
+      - name: Set AWS Profile for Moto
+        run: |
+          aws configure set --profile moto aws_access_key_id DUMMY
+          aws configure set --profile moto aws_secret_access_key DUMMY
+      - name: Run pytest
+        run: ENV=test uv run pytest -p no:warnings --verbose tests
