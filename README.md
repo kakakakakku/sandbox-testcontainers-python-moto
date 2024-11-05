@@ -4,6 +4,8 @@
 
 Sandbox for pytest using [Testcontainers for Python](https://github.com/testcontainers/testcontainers-python) and [Moto](https://github.com/getmoto/moto).
 
+The `MyModel` class in `src/mymodel.py` is based on the Moto documentation [Getting Started with Moto](https://docs.getmoto.org/en/latest/docs/getting_started.html).
+
 ## Format & Lint
 
 ```sh
